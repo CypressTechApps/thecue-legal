@@ -45,15 +45,17 @@
 </header>
 <main>
   <h1>Privacy Policy</h1>
-  <div class="eff">Effective July 18, 2026</div>
+  <div class="eff">Effective August 2, 2026</div>
 
   <div class="card">
     <strong>The short version.</strong> The Cue is built to know as little about you as
-    possible. Your profile, your keys, your messages, and your saved scenes never leave your
-    phone — they're encrypted on the device itself. There are no accounts, no ads, no
-    tracking, and no analytics. The only time any information leaves your phone is if you
-    subscribe and turn on <em>Enhanced scenes</em>, which sends your scene selections to our
-    AI provider to write that scene — and nothing about it is stored afterward.
+    possible. Your profile, your keys, and your saved scenes stay on your phone, encrypted on
+    the device itself. There are no accounts, no ads, no tracking, and no analytics. Messages
+    to your partner are encrypted on your phone before they are sent, pass through our relay
+    as unreadable ciphertext, and are deleted the moment your partner's phone collects them —
+    <strong>we cannot read them</strong>. The only content that ever leaves your phone in
+    readable form is what you send to our AI provider if you subscribe and turn on
+    <em>Enhanced scenes</em>, and nothing about that is stored afterward.
   </div>
 
   <h2>1. What The Cue stores on your device</h2>
@@ -64,13 +66,28 @@
     <li>Your messages and your saved (favorite) scenes;</li>
     <li>Your preferences and settings.</li>
   </ul>
-  <p>We never receive, upload, or back up any of this. If you uninstall the app, it's gone.</p>
+  <p>We never receive, upload, or back up any of this — with the single exception described in
+  section 2, where a pairing request carries your display name and public key to the partner
+  you are pairing with. If you uninstall the app, everything stored on the device is gone.</p>
 
-  <h2>2. Messaging</h2>
-  <p>Pairing happens in person by scanning each other's QR codes, so the two phones exchange
-  keys directly. Messages are <strong>end-to-end encrypted</strong> and travel device-to-device
-  over a local connection. They do not pass through, and are never stored on, any server we
-  operate. We cannot read your messages, and neither can anyone else.</p>
+  <h2>2. Pairing and messaging</h2>
+  <p><strong>Pairing.</strong> You pair by scanning a QR code — in person, or from a photo you
+  send however you like. The keys themselves are exchanged through that code, never generated
+  or held by us. Sending a pairing request passes your <strong>display name and public key</strong>
+  through our relay so the other phone can show you who is asking; that request is deleted as
+  soon as it is accepted or declined. Both phones then display a matching
+  <strong>safety number</strong> you can compare out of band — read it aloud, or check it in
+  person — to confirm nobody substituted a key in transit.</p>
+  <p><strong>Messages.</strong> Your messages are <strong>end-to-end encrypted on your phone
+  before they are sent</strong>. They travel through a relay we operate (Google Firebase), which
+  holds the encrypted message only until your partner's phone collects it and then deletes it.
+  <strong>We cannot read your messages.</strong> The relay only ever handles ciphertext, and the
+  keys that decrypt it exist solely on your two devices — there is nothing readable for us, for
+  Google, or for anyone else to access or hand over. We do not store message content.</p>
+  <p><strong>Notifications.</strong> To wake your partner's phone we send a silent push carrying
+  no message content, no sender name, and nothing identifying — just a signal to check for mail.
+  For that we store a notification token for the device, filed under a one-way hash of your
+  public key.</p>
 
   <h2>3. Enhanced scenes and Venice AI (optional, subscribers only)</h2>
   <p>The Cue can generate scenes in two ways. By default, and always on the free tier, scenes
@@ -101,15 +118,20 @@
   to children, and we do not knowingly collect information from anyone under 18.</p>
 
   <h2>7. Security</h2>
-  <p>On-device data is encrypted (AES-GCM, with keys protected by the Android Keystore), the app
-  can be locked with your password or biometrics, and its screens are marked secure so content
-  doesn't appear in screenshots or the app switcher. No system is perfectly secure, but The Cue is
-  designed so that even we cannot access your content.</p>
+  <p>Messages are encrypted with NaCl/libsodium — Curve25519 key exchange with XSalsa20-Poly1305
+  — before they leave your phone, so the relay never sees readable content. On-device data is
+  encrypted with AES-GCM under keys protected by the Android Keystore, the app can be locked with
+  your password or biometrics, and its screens are marked secure so content doesn't appear in
+  screenshots or the app switcher. No system is perfectly secure, but The Cue is designed so that
+  even we cannot access your content.</p>
 
   <h2>8. Data retention and deletion</h2>
-  <p>Because your data lives only on your device, you control it entirely. Messages can be set to
-  auto-delete on a timer, saved scenes can be removed in the app, and uninstalling The Cue erases
-  everything. We hold nothing on our side to delete.</p>
+  <p>Everything The Cue stores — your profile, keys, messages and saved scenes — lives on your
+  device, so you control it entirely. Messages can be set to auto-delete on a timer, saved scenes
+  can be removed in the app, and uninstalling The Cue erases all of it. A message in transit sits
+  on our relay only until your partner's phone collects it, encrypted the whole time, and is
+  deleted on delivery; a pairing request is deleted when it is answered. We keep no readable copy
+  of anything.</p>
 
   <h2>9. Changes</h2>
   <p>If we update this policy, we'll revise the effective date above and post the new version here.</p>
