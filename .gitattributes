@@ -1,0 +1,19 @@
+# Line-ending policy. Mirrors TheCue/.gitattributes — added 2026-08-27 after
+# `git status` reported index.html, privacy.html and terms.html as modified when
+# nothing in them had changed. All four files had been rewritten CRLF in the
+# working tree while Git stored them as LF, so every line diffed.
+#
+# That matters more here than it looks: this repo is the published legal site, and
+# a `git diff` full of phantom changes is exactly what hides a real edit to a
+# privacy policy or terms page.
+
+# Normalize all text to LF in the repository; Git picks the right ending on checkout.
+* text=auto eol=lf
+
+# Binaries: never transform, never diff as text.
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.pdf   binary
